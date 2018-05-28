@@ -2,7 +2,7 @@ import { CartItem } from '../models/cart-item.model';
 import { MenuItem } from '../models/menu-item.model';
 
 export class CartService {
-    items: CartItem[];
+    items: CartItem[] = [];
 
     clear(){
         this.items = [];
@@ -18,11 +18,17 @@ export class CartService {
     }
 
     removeItem(item: CartItem){
-        this.items.splice(this.items.indexOf(item), 1);
+        if(item.quantity > 1){
+            item.quantity = item.quantity - 1;
+        } else{
+            this.items.splice(this.items.indexOf(item), 1);
+        }
     }
 
     total(): number{
-        return this.items.map(item => item.value()).reduce((prev, value) => prev + value);
+        return this.items
+                .map(item => item.value())
+                    .reduce((prev, value) => prev + value, 0);
     }
 
 }

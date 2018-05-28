@@ -14,7 +14,7 @@ export class RestaurantDetailComponent implements OnInit {
   restaurant: Restaurant;
 
   constructor(title: Title, private route: ActivatedRoute, private restaurantService: RestaurantService) {
-    title.setTitle('Meat | Restaurante');
+    title.setTitle(`Meat | Realizar Pedido`);
   }
 
   ngOnInit() {
