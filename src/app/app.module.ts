@@ -12,17 +12,21 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { RestaurantComponent } from './restaurants/restaurant/restaurant.component';
-import { RestaurantService } from './services/restaurant.service';
+
 import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
 import { MenuComponent } from './restaurant-detail/menu/menu.component';
 import { ShoppingCartComponent } from './restaurant-detail/shopping-cart/shopping-cart.component';
 import { MenuItemComponent } from './restaurant-detail/menu/menu-item/menu-item.component';
 import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component';
-import { CartService } from './services/cart.service';
+
 import { OrderComponent } from './order/order.component';
 import { InputComponent } from './shared/input/input.component';
 import { RadioComponent } from './shared/radio/radio.component';
 import { OrderItensComponent } from './order/order-itens/order-itens.component';
+
+import { RestaurantService } from './services/restaurant.service';
+import { CartService } from './services/cart.service';
+import { OrderService } from './services/order.service';
 
 
 @NgModule({
@@ -52,6 +56,7 @@ import { OrderItensComponent } from './order/order-itens/order-itens.component';
   providers: [
     RestaurantService,
     CartService, 
+    OrderService, 
     {provide: LOCALE_ID, useValue: 'pt-BR'},
   ],
   bootstrap: [AppComponent]

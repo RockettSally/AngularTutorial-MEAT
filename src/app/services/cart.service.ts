@@ -11,18 +11,14 @@ export class CartService {
     addItem(item: MenuItem){
         let foundItem = this.items.find((mItem) => mItem.menuItem.id === item.id);
         if(foundItem){
-            foundItem.quantity = foundItem.quantity + 1;
+            this.increaseQty(foundItem);
         } else {
             this.items.push(new CartItem(item, 1));
         }
     }
 
     removeItem(item: CartItem){
-        if(item.quantity > 1){
-            item.quantity = item.quantity - 1;
-        } else{
-            this.items.splice(this.items.indexOf(item), 1);
-        }
+        this.items.splice(this.items.indexOf(item), 1);
     }
 
     total(): number{
@@ -31,4 +27,14 @@ export class CartService {
                     .reduce((prev, value) => prev + value, 0);
     }
 
+    increaseQty(item: CartItem){
+        item.quantity = item.quantity + 1
+    }
+
+    decreaseQty(item: CartItem){
+        item.quantity = item.quantity - 1
+        if(item.quantity === 0){
+            this.removeItem(item);
+        }
+    }
 }
