@@ -19,17 +19,17 @@
             </div>
             <div class="col-sm-6 col-xs-12">
               <mt-input-container label="Endereço" errorMessage="Campo obrigatório e com mais de 5 caracteres.">
-                <input type="text" name="street" [(ngModel)]="address.street" #inputAddressStreet="ngModel" minlength="5" required class="form-control" placeholder="Endereço">
+                <input type="text" name="address" ngModel #inputAddressStreet="ngModel" minlength="5" required class="form-control" placeholder="Endereço">
               </mt-input-container>
             </div>
             <div class="col-sm-3 col-xs-6">
                 <mt-input-container label="Número" errorMessage="Obrigatório e Somente Números.">
-                  <input type="text" name="number" pattern="^[0-9]*$" [(ngModel)]="address.number" #inputAddressNumber="ngModel" required class="form-control" placeholder="Número">
+                  <input type="text" name="number" pattern="^[0-9]*$" ngModel #inputAddressNumber="ngModel" required class="form-control" placeholder="Número">
                 </mt-input-container>
             </div>
             <div class="col-sm-3 col-xs-6">
               <mt-input-container label="Complemento">
-                <input type="text" name="description" [(ngModel)]="address.description" #inputAddressOptional="ngModel" class="form-control" placeholder="Complemento">
+                <input type="text" name="optional" ngModel #inputAddressOptional="ngModel" class="form-control" placeholder="Complemento">
               </mt-input-container>
             </div>
             <!-- /.col -->
@@ -49,41 +49,21 @@
             <!-- accepted payments column -->
             <div class="col-sm-6 col-xs-12">
               <p class="lead">Formas de Pagamento:</p>
-
-                <div class="form-group">
-                  <mt-radio [options]="paymentOptions" name="selectedPaymentOption" [(ngModel)]="selectedPaymentOption"></mt-radio>
-                </div>
-
-            </div>
-            <!-- /.col -->
-            <div class="col-sm-6 col-xs-12">
-              <p class="lead">Frete e Total:</p>
-
-              <div class="table-responsive">
-                <table class="table">
-                  <tbody><tr>
-                    <th style="width:50%">Itens:</th>
-                    <td class="text-right">R$ 20,00</td>
-                  </tr>
-                  <tr>
-                    <th>Frete:</th>
-                    <td class="text-right">R$ 8,00</td>
-                  </tr>
-                  <tr>
-                    <th>Total:</th>
-                    <td class="text-right">R$ 28,00</td>
-                  </tr>
-                </tbody></table>
+              <div class="form-group">
+                <mt-radio [options]="paymentOptions" name="selectedPaymentOption" [(ngModel)]="selectedPaymentOption" required></mt-radio>
               </div>
             </div>
-            <!-- /.col -->
+            <div class="col-sm-6 col-xs-12">
+              <p class="lead">Frete e Total:</p>
+              <mt-delivery-costs [deliveryTax]='delivery' [itemsValue]="itemsValue()"></mt-delivery-costs>
+            </div>
           </div>
 
         </form>
 
         <div class="row">
           <div class="col-xs-12">
-            <button [disabled]="!order.valid" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Concluir Pedido
+            <button (click)="checkOrder(cartItems(order.value))" [disabled]="!order.valid || cartItems().length === 0" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Concluir Pedido
             </button>
           </div>
         </div>

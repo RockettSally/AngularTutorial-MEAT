@@ -4,6 +4,7 @@ import { RadioOption } from './../shared/radio/radio-option.model';
 import { Address } from './../models/address.model';
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order.service';
+import { Order, OrderItem } from '../models/order.model';
 
 @Component({
   selector: 'mt-order',
@@ -11,9 +12,9 @@ import { OrderService } from '../services/order.service';
 })
 export class OrderComponent implements OnInit {
 
-  address: Address = {street: '', number: '', description: ''};
   paymentOptions: RadioOption[] = paymentOptions;
   selectedPaymentOption: any = "";
+  delivery: number = 8;
 
   constructor(private orderService: OrderService) { 
 
@@ -21,6 +22,10 @@ export class OrderComponent implements OnInit {
 
   ngOnInit() {
     
+  }
+
+  itemsValue(): number{
+    return this.orderService.itemsValue();
   }
 
   cartItems(): CartItem[]{
@@ -39,4 +44,13 @@ export class OrderComponent implements OnInit {
     this.orderService.removeItem(item);
   }
 
+  checkOrder(order: Order){
+    order.orderItems = this.cartItems()
+        .map((item: CartItem) => new OrderItem(item.quantity, item.menuItem.id));
+    order.paymentOption = this.selectedPaymentOption;
+    this.orderService.checkOrder(order).subscribe((orderId: string) =>{
+      console.log(`Compra concluida: ${orderId}`);
+    });
+    this.orderService.clear();   
+  }
 }

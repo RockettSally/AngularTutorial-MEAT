@@ -370,5 +370,56 @@
       "restaurantId": "tasty-treats"
     }
   ],
-  "orders": []
+  "orders": [
+    [
+      {
+        "menuItem": {
+          "id": "capp",
+          "imagePath": "assets/img/foods/capp.png",
+          "name": "Cappuccino com Chantilly",
+          "description": "Tradicional cappuccino com chantilly",
+          "price": 9.9,
+          "restaurantId": "coffee-corner"
+        },
+        "quantity": 2
+      }
+    ],
+    [
+      {
+        "menuItem": {
+          "id": "burger",
+          "imagePath": "assets/img/foods/burger.png",
+          "name": "Classic Burger",
+          "description": "O clássico. Não tem como errar.",
+          "price": 18.5,
+          "restaurantId": "burger-house"
+        },
+        "quantity": 4
+      }
+    ],
+    [
+      {
+        "menuItem": {
+          "id": "fries",
+          "imagePath": "assets/img/foods/fries.png",
+          "name": "Batatas Fritas",
+          "description": "Batatas fritas crocantes",
+          "price": 5.5,
+          "restaurantId": "burger-house"
+        },
+        "quantity": 1
+      },
+      {
+        "menuItem": {
+          "id": "coke.png",
+          "imagePath": "assets/img/foods/coke.png",
+          "name": "Refrigerante",
+          "description": "O refri mais gelado da cidade.",
+          "price": 4.5,
+          "restaurantId": "burger-house"
+        },
+        "quantity": 1
+      }
+    ]
+  ]
 }
