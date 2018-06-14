@@ -9,9 +9,9 @@ export class OrderItensComponent implements OnInit {
 
   @Input() items: CartItem[];
 
-  @Output() increaseQty: EventEmitter<CartItem>;
-  @Output() decreaseQty: EventEmitter<CartItem>;
-  @Output() removeItem: EventEmitter<CartItem>;
+  @Output() increaseQty: EventEmitter<CartItem> = new EventEmitter<CartItem>();
+  @Output() decreaseQty: EventEmitter<CartItem> = new EventEmitter<CartItem>();
+  @Output() removeItem: EventEmitter<CartItem> = new EventEmitter<CartItem>();
 
   constructor() { }
 
